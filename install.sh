@@ -19,6 +19,8 @@ die() {
     exit "${2:-1}"
 }
 
+git clone --recursive "$GITHUB_URL" "$DOTPATH"
+
 cd "$DOTPATH"
 if [ $? -ne 0 ]; then
     die "not found: $DOTPATH"
