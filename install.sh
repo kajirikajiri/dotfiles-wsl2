@@ -46,9 +46,12 @@ while [ $# -gt 0 ];do
 	shift
 done
 
-sudo apt install zsh -y
-chsh -s $(which zsh)
+
 
 link_to_homedir
 git config --global include.path "~/.gitconfig_shared"
+
+sudo apt install -y zsh
+chsh -s $(which zsh)
+
 command echo -e "\e[1;36m Install completed!!!! \e[m"
