@@ -37,15 +37,13 @@ do
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-sudo apt-get update
-sudo apt update
-
 # zshがなければinstallする
 if has "zsh"; then
   echo
   echo
   echo 'zsh is present!'
 else
+  sudo apt update
   sudo apt install -y zsh
   chsh -s $(which zsh) || true # for skipping in CI
   echo
@@ -74,7 +72,8 @@ if has "fzf"; then
   echo
   echo 'fzf is present!'
 else
-  sudo apt-get install fzf
+  sudo apt-get update
+  sudo apt-get install -y fzf
   echo
   echo
   echo 'installed fzf'
@@ -93,8 +92,36 @@ else
   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
   sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo apt update
-  sudo apt install google-chrome-stable -y
+  sudo apt install -y google-chrome-stable
   echo
   echo
   echo 'installed google-chrome'
+fi
+
+# hub を使えるようにする
+if has "hub"; then
+  echo
+  echo
+  echo 'hub present!'
+else
+  sudo apt update
+  sudo apt install -y hub
+  echo
+  echo
+  echo 'installed hub'
+fi
+
+# yarn を使えるようにする
+if has "yarn"; then
+  echo 'yarn present!'
+else
+  sudo apt install -y nodejs npm
+  sudo npm install n -g
+  sudo n stable
+  sudo apt purge -y nodejs npm
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt update && sudo apt install -y yarn
+  sudo apt purge -fy libuv1 nodejs
+  echo 'installed yarn'
 fi
