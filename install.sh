@@ -54,15 +54,12 @@ git config --global include.path "~/.gitconfig_shared"
 # zsh
 sudo apt update
 sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt install golang-go zsh -y
+sudo apt install -y golang-go zsh
+sudo apt-get update
+sudo apt-get install -y fzf
 chsh -s $(which zsh)
 
 # ghq
 go get github.com/x-motemen/ghq
-
-# fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install -y
-
 
 command echo -e "\e[1;36m Install completed!!!! \e[m"
