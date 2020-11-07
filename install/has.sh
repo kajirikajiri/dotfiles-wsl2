@@ -11,5 +11,4 @@ function is_exists {
     return $?
 }
 
-export -f is_exists
 export -f has
