@@ -1,3 +1,5 @@
+# https://qiita.com/yutakatay/items/c6c7584d9795799ee164
+
 # 最初にすべての階層のファイルを無視します
 # 階層は必要なだけ追加する
 ### all ignore ###
@@ -10,3 +12,4 @@
 !.gitignore
 !/.zshrc
 !/setup.sh
+/.zfunc/**  # ディレクトリは管理したいけど中身はいらないときはこんな感じ
