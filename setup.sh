@@ -42,29 +42,59 @@ sudo apt update
 
 # zshがなければinstallする
 if has "zsh"; then
-    echo 'zsh is present!'
+  echo
+  echo
+  echo 'zsh is present!'
 else
-# ない場合はinstallする
-    echo 'install zsh'
-    sudo apt install -y zsh
-    chsh -s $(which zsh) || true # for skipping in CI
+  sudo apt install -y zsh
+  chsh -s $(which zsh) || true # for skipping in CI
+  echo
+  echo
+  echo 'installed zsh'
 fi
 
 # golangがなければinstallする
 if has "go"; then
-    echo 'go is present!'
+  echo
+  echo
+  echo 'go is present!'
 else
-    echo 'install go'
-    sudo add-apt-repository ppa:longsleep/golang-backports
-    sudo apt update
-    sudo apt install -y golang-go
-    go get github.com/x-motemen/ghq
+  sudo add-apt-repository ppa:longsleep/golang-backports
+  sudo apt update
+  sudo apt install -y golang-go
+  go get github.com/x-motemen/ghq
+  echo
+  echo
+  echo 'installed go'
 fi
 
 # fzfがなければinstallする
 if has "fzf"; then
-    echo 'fzf is present!'
+  echo
+  echo
+  echo 'fzf is present!'
 else
-    echo 'install fzf'
-    sudo apt-get install fzf
+  sudo apt-get install fzf
+  echo
+  echo
+  echo 'installed fzf'
+fi
+
+# xeyes を使えるようにする
+if has "google-chrome"; then
+  echo
+  echo
+  echo 'google-chrome present!'
+else
+  sudo apt update && sudo apt upgrade -y
+  sudo apt install -y xfce4-terminal xfce4-session xfce4
+  sudo apt-get update
+  sudo apt-get install -y x11-apps
+  sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+  sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo apt update
+  sudo apt install google-chrome-stable -y
+  echo
+  echo
+  echo 'installed google-chrome'
 fi
