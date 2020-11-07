@@ -40,50 +40,50 @@ done
 # zshがなければinstallする
 if has "zsh"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'zsh is present!'
+  echo -e "\n"
 else
   sudo apt update
   sudo apt install -y zsh
   chsh -s $(which zsh) || true # for skipping in CI
   echo -e "\n"
-  echo -e "\n"
   echo 'installed zsh'
+  echo -e "\n"
 fi
 
 # golangがなければinstallする
 if has "go"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'go is present!'
+  echo -e "\n"
 else
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
   sudo apt install -y golang-go
   go get github.com/x-motemen/ghq
   echo -e "\n"
-  echo -e "\n"
   echo 'installed go'
+  echo -e "\n"
 fi
 
 # fzfがなければinstallする
 if has "fzf"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'fzf is present!'
+  echo -e "\n"
 else
   sudo apt-get update
   sudo apt-get install -y fzf
   echo -e "\n"
-  echo -e "\n"
   echo 'installed fzf'
+  echo -e "\n"
 fi
 
 # xeyes を使えるようにする
 if has "google-chrome"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'google-chrome present!'
+  echo -e "\n"
 else
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y xfce4-terminal xfce4-session xfce4
@@ -94,28 +94,28 @@ else
   sudo apt update
   sudo apt install -y google-chrome-stable
   echo -e "\n"
-  echo -e "\n"
   echo 'installed google-chrome'
+  echo -e "\n"
 fi
 
 # hub を使えるようにする
 if has "hub"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'hub present!'
+  echo -e "\n"
 else
   sudo apt update
   sudo apt install -y hub
   echo -e "\n"
-  echo -e "\n"
   echo 'installed hub'
+  echo -e "\n"
 fi
 
 # yarn を使えるようにする
 if has "yarn"; then
   echo -e "\n"
-  echo -e "\n"
   echo 'yarn present!'
+  echo -e "\n"
 else
   sudo apt install -y nodejs npm
   sudo npm install n -g
@@ -126,6 +126,6 @@ else
   sudo apt update && sudo apt install -y yarn
   sudo apt purge -fy libuv1 nodejs
   echo -e "\n"
-  echo -e "\n"
   echo 'installed yarn'
+  echo -e "\n"
 fi
