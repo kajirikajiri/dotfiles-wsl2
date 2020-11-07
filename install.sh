@@ -46,7 +46,7 @@ while [ $# -gt 0 ];do
 	shift
 done
 
-sudo apt install zsh
+sudo apt install zsh -y
 chsh -s $(which zsh)
 
 link_to_homedir
