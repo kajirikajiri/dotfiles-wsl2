@@ -37,18 +37,6 @@ do
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-if has "sudo"; then
-  echo -e "\n"
-  echo 'sudo is present!'
-  echo -e "\n"
-elif has "apt"; then
-  apt update
-  apt install -y sudo
-  echo -e "\n"
-  echo 'install sudo'
-  echo -e "\n"
-fi
-
 # zshがなければinstallする
 if has "zsh"; then
   echo -e "\n"
