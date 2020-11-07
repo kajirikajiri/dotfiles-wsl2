@@ -37,41 +37,34 @@ do
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
+sudo apt-get update
+sudo apt update
+
 # zshがなければinstallする
 if has "zsh"; then
     echo 'zsh is present!'
+else
 # ない場合はinstallする
-elif has "apt"; then
     echo 'install zsh'
-    sudo apt update
     sudo apt install -y zsh
     chsh -s $(which zsh) || true # for skipping in CI
-else
-    echo 'zsh, apt not found'
 fi
 
 # golangがなければinstallする
 if has "go"; then
     echo 'go is present!'
-# ない場合はinstallする
-elif has "apt"; then
+else
     echo 'install go'
     sudo add-apt-repository ppa:longsleep/golang-backports
     sudo apt update
     sudo apt install -y golang-go
     go get github.com/x-motemen/ghq
-else
-    echo 'go, apt not found'
 fi
 
 # fzfがなければinstallする
 if has "fzf"; then
     echo 'fzf is present!'
-# ない場合はinstallする
-elif has "git"; then
-    echo 'install fzf'
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
 else
-    echo 'fzf, git not found'
+    echo 'install fzf'
+    sudo apt-get install fzf
 fi
