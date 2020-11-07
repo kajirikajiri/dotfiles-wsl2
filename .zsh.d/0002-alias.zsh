@@ -1,5 +1,7 @@
 alias ga.='git add .'
 alias gcm='git commit -m'
+alias gs='git status'
+alias gd='gid diff'
 alias gp='git pull'
 alias gpu='git push'
 alias ci='code-insiders'
