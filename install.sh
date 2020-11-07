@@ -1,12 +1,26 @@
 #...
 
-source "install/has.sh"
-source "install/die.sh"
-
 DOTPATH_NAME=dotfiles-wsl2
 DOTPATH="~/.${DOTPATH_NAME}"
 GITHUB_URL="http://github.com/kajirikajiri/${DOTPATH_NAME}.git"
 TARBALL="https://github.com/kajirikajiri/${DOTPATH_NAME}/archive/main.tar.gz"
+
+# is_exists returns true if executable $1 exists in $PATH
+is_exists() {
+    type "$1" >/dev/null 2>&1
+    return $?
+}
+
+# has is wrapper function
+has() {
+    is_exists "$@"
+}
+
+# die returns exit code error and echo error message
+die() {
+    e_error "$1" 1>&2
+    exit "${2:-1}"
+}
 
 git clone --recursive "$GITHUB_URL" "$DOTPATH"
 
