@@ -1,65 +1,72 @@
-#!/usr/bin/env bash
-set -ue
+#...
 
-helpmsg() {
-	command echo "Usage: $0 [--help | -h]" 0>&2
-	command echo ""
+DOTPATH=~/.dotfiles
+GITHUB_URL=http://github.com/kajirikajiri/dotfiles-wsl2.git
+TARBALL="https://github.com/kajirikajiri/dotfiles-wsl2/archive/main.tar.gz"
+UNAME=$(uname)
+# is_exists returns true if executable $1 exists in $PATH
+is_exists() {
+    type "$1" >/dev/null 2>&1
+    return $?
+}
+# has is wrapper function
+has() {
+    is_exists "$@"
+}
+# die returns exit code error and echo error message
+die() {
+    e_error "$1" 1>&2
+    exit "${2:-1}"
 }
 
-link_to_homedir() {
-	command echo "backup old dotfiles..."
-	if [ ! -d "$HOME/.dotbackup" ];then
-		command echo "$HOME/.dotbackup not found. Auto Make it"
-		command mkdir "$HOME/.dotbackup"
-	fi
+cd "$DOTPATH"
+if [ $? -ne 0 ]; then
+    die "not found: $DOTPATH"
+fi
 
-	local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
-	local dotdir=$(dirname ${script_dir})
-	if [[ "$HOME" != "$dotdir" ]];then
-		for f in $dotdir/.??*; do
-			[[ `basename $f` == ".git" ]] && continue
-			if [[ -L "$HOME/`basename $f`" ]];then
-				command rm -f "$HOME/`basename $f`"
-			fi
-			if [[ -e "$HOME/`basename $f`" ]];then
-				command mv "$HOME/`basename $f`" "$HOME/.dotbackup"
-			fi
-			command ln -snf $f $HOME
-		done
-	else
-		command echo "same install src dest"
-	fi
-}
+# 移動できたらリンクを実行する
+for f in .??*
+do
+    [ "$f" = ".git" ] && continue
 
-while [ $# -gt 0 ];do
-	case ${1} in
-		--debug|-d)
-			set -uex
-			;;
-		--help|-h)
-			helpmsg
-			exit 1
-			;;
-		*)
-			;;
-	esac
-	shift
+    ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
+# zshがなければinstallする
+if has "zsh"; then
+    echo 'zsh is present!'
+# ない場合はinstallする
+elif has "apt"; then
+    echo 'install zsh'
+    sudo apt update
+    sudo apt install -y zsh
+    chsh -s $(which zsh) || true # for skipping in CI
+else
+    echo 'zsh, apt not found'
+fi
 
+# golangがなければinstallする
+if has "go"; then
+    echo 'go is present!'
+# ない場合はinstallする
+elif has "apt"; then
+    echo 'install go'
+    sudo add-apt-repository ppa:longsleep/golang-backports
+    sudo apt update
+    sudo apt install -y golang-go
+    go get github.com/x-motemen/ghq
+else
+    echo 'go, apt not found'
+fi
 
-link_to_homedir
-git config --global include.path "~/.gitconfig_shared"
-
-# zsh
-sudo apt update
-sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt install -y golang-go zsh
-sudo apt-get update
-sudo apt-get install -y fzf
-chsh -s $(which zsh)
-
-# ghq
-go get github.com/x-motemen/ghq
-
-command echo -e "\e[1;36m Install completed!!!! \e[m"
+# fzfがなければinstallする
+if has "fzf"; then
+    echo 'fzf is present!'
+# ない場合はinstallする
+elif has "git"; then
+    echo 'install fzf'
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+else
+    echo 'fzf, git not found'
+fi
