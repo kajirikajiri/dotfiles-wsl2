@@ -5,6 +5,7 @@ alias gpu='git push'
 alias ci='code-insiders'
 alias ci.='code-insiders .'
 alias l='ls -la'
+alias gg='ghq get'
 
 # git checkout feature/issue-
 function gcof { git checkout feature/issue-"$@" }
