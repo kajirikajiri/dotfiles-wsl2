@@ -1,6 +1,6 @@
 #...
 
-DOTPATH=~/.dotfiles
+DOTPATH=~/.dotfiles-wsl2
 GITHUB_URL=http://github.com/kajirikajiri/dotfiles-wsl2.git
 TARBALL="https://github.com/kajirikajiri/dotfiles-wsl2/archive/main.tar.gz"
 UNAME=$(uname)
