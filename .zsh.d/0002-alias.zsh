@@ -6,6 +6,9 @@ alias ci='code-insiders'
 alias ci.='code-insiders .'
 alias l='ls -la'
 alias gg='ghq get'
+alias d="docker"
+alias dc="docker-compose"
+alias dcrr="docker-compose run --rm"
 
 # git checkout feature/issue-
 function gcof { git checkout feature/issue-"$@" }
