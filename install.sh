@@ -1,5 +1,7 @@
 #...
 
+source "install/is_exists.sh"
+
 DOTPATH_NAME=dotfiles-wsl2
 DOTPATH="~/.${DOTPATH_NAME}"
 GITHUB_URL="http://github.com/kajirikajiri/${DOTPATH_NAME}.git"
