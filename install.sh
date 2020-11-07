@@ -51,8 +51,18 @@ done
 link_to_homedir
 git config --global include.path "~/.gitconfig_shared"
 
+# zsh
 sudo apt update
-sudo apt install -y zsh
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt install golang-go zsh -y
 chsh -s $(which zsh)
+
+# ghq
+go get github.com/x-motemen/ghq
+
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install -y
+
 
 command echo -e "\e[1;36m Install completed!!!! \e[m"
