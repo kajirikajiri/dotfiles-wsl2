@@ -8,10 +8,10 @@ GITHUB_URL="http://github.com/kajirikajiri/${DOTPATH_NAME}.git"
 TARBALL="https://github.com/kajirikajiri/${DOTPATH_NAME}/archive/main.tar.gz"
 
 # is_exists returns true if executable $1 exists in $PATH
-is_exists() {
-    type "$1" >/dev/null 2>&1
-    return $?
-}
+# is_exists() {
+#     type "$1" >/dev/null 2>&1
+#     return $?
+# }
 # has is wrapper function
 has() {
     is_exists "$@"
