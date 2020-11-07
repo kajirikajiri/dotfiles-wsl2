@@ -11,15 +11,15 @@ alias dc="docker-compose"
 alias dcrr="docker-compose run --rm"
 
 # git checkout feature/issue-
-function gcof {
+function gcof() {
   git checkout feature/issue-"$@"
 }
 # git checkout issue-
-function gcod {
+function gcod() {
   git checkout develop && git pull
 }
 # git checkout -b feature/issue-
-function gcobf {
+function gcobf() {
   echo "$(currentBranch) -> feature/issue-$@\ny/n"
   if read -q; then
     echo "\n"
