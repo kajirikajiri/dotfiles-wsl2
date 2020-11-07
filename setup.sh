@@ -1,9 +1,8 @@
 #...
 
-DOTPATH_NAME=dotfiles-wsl2
-DOTPATH="~/.${DOTPATH_NAME}"
-GITHUB_URL="http://github.com/kajirikajiri/${DOTPATH_NAME}.git"
-TARBALL="https://github.com/kajirikajiri/${DOTPATH_NAME}/archive/main.tar.gz"
+DOTPATH=~/.dotfiles-wsl2
+GITHUB_URL="http://github.com/kajirikajiri/dotfiles-wsl2.git"
+TARBALL="https://github.com/kajirikajiri/dotfiles-wsl2/archive/main.tar.gz"
 
 # is_exists returns true if executable $1 exists in $PATH
 is_exists() {
