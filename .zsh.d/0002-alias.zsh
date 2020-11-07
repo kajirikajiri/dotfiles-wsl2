@@ -4,6 +4,7 @@ alias gp='git pull'
 alias gpu='git push'
 alias ci='code-insiders'
 alias ci.='code-insiders .'
+alias l='ls -la'
 
 # git checkout feature/issue-
 function gcof { git checkout feature/issue-"$@" }
@@ -33,7 +34,7 @@ function history-fzf() {
 
   zle reset-prompt
 }
-zle -Nhistory-fzf
+zle -N history-fzf
 bindkey '^R' history-fzf
 
 
