@@ -79,7 +79,7 @@ else
   echo -e "\n"
 fi
 
-# xeyes を使えるようにする
+# google-chrome を使えるようにする
 if has "google-chrome"; then
   echo -e "\n"
   echo 'google-chrome present!'
