@@ -11,5 +11,7 @@
 ### not ignore ###
 !.gitignore
 !/.zshrc
+!/.zsh.d/0001-path.zsh
+!/.zsh.d/0002-alias.zsh
 !/setup.sh
 /.zfunc/**  # ディレクトリは管理したいけど中身はいらないときはこんな感じ
