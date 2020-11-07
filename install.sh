@@ -51,6 +51,7 @@ done
 link_to_homedir
 git config --global include.path "~/.gitconfig_shared"
 
+sudo apt update
 sudo apt install -y zsh
 chsh -s $(which zsh)
 
