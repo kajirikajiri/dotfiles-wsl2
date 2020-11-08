@@ -17,6 +17,7 @@
 !/.zsh.d
 !/.zsh.d/0001-path.zsh
 !/.zsh.d/0002-alias.zsh
+!/.zsh.d/0003-style.zsh
 
 # ディレクトリは管理したいけど中身はいらないときはこんな感じ
 /.zfunc/**
