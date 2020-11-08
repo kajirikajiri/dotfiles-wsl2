@@ -3,35 +3,67 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
+Plug 'bronson/vim-trailing-whitespace'
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+" Unite
+"   depend on vimproc
+"   ------------- VERY IMPORTANT ------------
+"   you have to go to .vim/plugin/vimproc.vim and do a ./make
+"   -----------------------------------------
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-" Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'w0ng/vim-hybrid'
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'terryma/vim-multiple-cursors'
 
-" Using a non-default branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
-
-" Initialize plugin system
 call plug#end()
+
+" -----------------
+"       THEME
+" -----------------
+
+set background=dark
+try
+  colorscheme vim-hybrid
+  catch
+endtry
+
+" ----------------------------
+"       File Management
+" ----------------------------
+" search a file in the filetree
+nnoremap <space><space> :<C-u>Files<cr>
+nnoremap <space>b :<C-u>Buffers<cr>
+nnoremap <space>g :<C-u>GFiles<cr>
+nnoremap <space>a :<C-u>Ag<cr>
+
+" #####################
+" ### Personal conf ###
+" #####################
+
+" TABキーを押した際にタブ文字の代わりにスペースを入れる
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" 貼付け時の自動インデント禁止
+:set paste
+
+" swapなし
+:set noswapfile
+
+" cursorが自動で切り替わるようにする
+if &term =~ '^xterm'
+  " enter vim
+  autocmd VimEnter * silent !echo -ne "\e[3 q"
+  " oherwise
+  let &t_EI .= "\<Esc>[3 q"
+  " insert mode
+  let &t_SI .= "\<Esc>[6 q"
+  autocmd VimLeave * silent !echo -ne "\e[6 q"
+endif
+
+" vim-fzfのagでファイル名一致を除外
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)

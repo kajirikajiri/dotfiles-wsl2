@@ -1,3 +1,5 @@
+alias ..='cd ..'
+alias ...='cd ../..'
 alias ga.='git add .'
 alias gcm='git commit -m'
 alias gs='git status'
@@ -70,3 +72,15 @@ function hub-browse() {
 }
 zle -N hub-browse
 bindkey "^O" hub-browse
+
+zdf() {
+	local file
+	file="$(fzf +m -q "$*" \
+		--preview="${FZF_PREVIEW_CMD}" \
+		--preview-window='right:hidden:wrap' \
+		--bind=ctrl-v:toggle-preview \
+		--bind=ctrl-x:toggle-sort \
+		--header='(view:ctrl-v) (sort:ctrl-x)' \
+	)"
+	vi "$file" || return
+}

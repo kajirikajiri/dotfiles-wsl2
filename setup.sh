@@ -71,8 +71,8 @@ if has "fzf"; then
   echo 'fzf is present!'
   echo -e "\n"
 else
-  sudo apt-get update
-  sudo apt-get install -y fzf
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
   echo -e "\n"
   echo 'installed fzf'
   echo -e "\n"
@@ -128,3 +128,11 @@ else
   echo 'installed yarn'
   echo -e "\n"
 fi
+
+# silversearcher を使えるようにする
+sudo apt-get update
+sudo apt-get install -y silversearcher-ag
+echo -e "\n"
+echo 'installed silversearcher-ag'
+echo -e "\n"
+
