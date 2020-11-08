@@ -4,3 +4,11 @@
 
 - 紫の画面がでたらenter
 - 自動でzshに設定できていないのでchshで設定する
+
+# Tasks
+
+- [ ] github actionsでci
+https://qiita.com/yutakatay/items/c6c7584d9795799ee164
+
+- [ ] current directoryのdirectory一覧がみたい
+
