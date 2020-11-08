@@ -1,3 +1,4 @@
+# https://tomiylab.com/2020/03/prompt/
 # set light prompt
 # git ブランチ名を色付きで表示させるメソッド
 function rprompt-git-current-branch {
