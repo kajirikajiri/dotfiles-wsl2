@@ -21,3 +21,9 @@
 
 # ディレクトリは管理したいけど中身はいらないときはこんな感じ
 /.zfunc/**
+
+!/.vim
+!/.vim/autoload
+!/.vim/.netrwhist
+!/.vim/autoload/plug.vim
+!/.vimrc
