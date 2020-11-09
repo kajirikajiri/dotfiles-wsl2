@@ -25,6 +25,10 @@ function gcof() {
 function gcod() {
   git checkout develop && git pull
 }
+# git current branch
+function currentBranch {
+  git branch | grep \* | cut -d ' ' -f2
+}
 # git checkout -b feature/issue-
 function gcobf() {
   echo "$(currentBranch) -> feature/issue-$@\ny/n"
