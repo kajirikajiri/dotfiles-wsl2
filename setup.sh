@@ -129,10 +129,3 @@ else
   echo -e "\n"
 fi
 
-# silversearcher を使えるようにする
-sudo apt-get update
-sudo apt-get install -y silversearcher-ag
-echo -e "\n"
-echo 'installed silversearcher-ag'
-echo -e "\n"
-
