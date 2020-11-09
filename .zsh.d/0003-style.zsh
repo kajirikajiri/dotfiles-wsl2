@@ -47,8 +47,9 @@ function rprompt-git-current-branch {
 setopt prompt_subst
  
 # プロンプトの右側にメソッドの結果を表示させる
-RPROMPT='`rprompt-git-current-branch`'
+# RPROMPT=''
 
 # set left prompt
-PROMPT='${PWD/#$HOME/~}
+PROMPT='`rprompt-git-current-branch`
+${PWD/#$HOME/~}
 > '
