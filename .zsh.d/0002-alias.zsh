@@ -14,6 +14,7 @@ alias l='ls -la'
 alias gg='ghq get'
 alias d="docker"
 alias dc="docker-compose"
+alias dcu="docker-compose up"
 alias dcrr="docker-compose run --rm"
 
 # git checkout feature/issue-
