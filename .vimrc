@@ -60,6 +60,8 @@ let g:auto_save_silent = 1
 " ### Personal conf ###
 " #####################
 
+let mapleader=";"
+
 " TABキーを押した際にタブ文字の代わりにスペースを入れる
 set expandtab
 set tabstop=2
@@ -87,4 +89,12 @@ endif
 " <C-a>で行頭<C-e>で行末
 nmap <C-e> $
 nmap <C-a> 0
+
+:hi CursorLine   cterm=NONE ctermbg=lightblue ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=lightblue ctermfg=white guibg=darkred guifg=white
+:nnoremap <Leader>c :nohlsearch<CR>:set cul cuc<cr>:sleep 300m<cr>:set nocul nocuc<cr>/<BS>
+
+" 右側に行を追加して透明にする
+set signcolumn=yes
+highlight clear SignColumn
 
