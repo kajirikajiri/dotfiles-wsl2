@@ -50,6 +50,9 @@ else
   echo -e "\n"
 fi
 
+# zsh-autosuggestion
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
 # golangがなければinstallする
 if has "go"; then
   echo -e "\n"
@@ -128,4 +131,5 @@ else
   echo 'installed yarn'
   echo -e "\n"
 fi
+
 

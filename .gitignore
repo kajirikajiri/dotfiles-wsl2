@@ -18,6 +18,10 @@
 !/.zsh.d/0001-path.zsh
 !/.zsh.d/0002-alias.zsh
 !/.zsh.d/0003-style.zsh
+!/.zsh.d/0004-package.zsh
+
+!/.zsh
+!/.zsh/zsh-autosuggestions
 
 # ディレクトリは管理したいけど中身はいらないときはこんな感じ
 /.zfunc/**
