@@ -24,6 +24,8 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+Plug 'vim-scripts/vim-auto-save'
+
 call plug#end()
 
 " -----------------
@@ -44,6 +46,15 @@ nnoremap <space><space> :<C-u>Files<cr>
 nnoremap <space>b :<C-u>Buffers<cr>
 nnoremap <space>g :<C-u>GFiles<cr>
 nnoremap <space>a :<C-u>Ag<cr>
+" vim-fzfのagでファイル名一致を除外
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" ---------------------------
+"       Vim Autosave
+" ---------------------------
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+let g:auto_save_silent = 1
 
 " #####################
 " ### Personal conf ###
@@ -56,6 +67,8 @@ set shiftwidth=2
 
 " 貼付け時の自動インデント禁止
 :set paste
+" カレント行のインデントを維持する
+:set autoindent
 
 " swapなし
 :set noswapfile
@@ -71,5 +84,7 @@ if &term =~ '^xterm'
   autocmd VimLeave * silent !echo -ne "\e[6 q"
 endif
 
-" vim-fzfのagでファイル名一致を除外
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" <C-a>で行頭<C-e>で行末
+nmap <C-e> $
+nmap <C-a> 0
+
