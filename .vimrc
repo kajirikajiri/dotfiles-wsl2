@@ -108,4 +108,5 @@ let g:auto_save_silent = 1
 
 " 検索結果をハイライト
 set hlsearch
+nnoremap <ESC><ESC> :noh<CR>
 
