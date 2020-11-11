@@ -26,6 +26,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 Plug 'vim-scripts/vim-auto-save'
 
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 " -----------------
@@ -39,7 +41,7 @@ try
 endtry
 
 " ----------------------------
-"       File Management
+"       File Management fzf
 " ----------------------------
 " search a file in the filetree
 nnoremap <space><space> :<C-u>Files<cr>
@@ -50,11 +52,12 @@ nnoremap <space>a :<C-u>Ag<cr>
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " ---------------------------
-"       Vim Autosave
+"       vim-gitgutter
 " ---------------------------
-let g:auto_save = 1
-let g:auto_save_in_insert_mode = 0
-let g:auto_save_silent = 1
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterDelete ctermfg=darkred
+highlight GitGutterChange ctermfg=magenta
+highlight GitGutterChangeDelete ctermfg=brown
 
 " #####################
 " ### Personal conf ###
@@ -97,4 +100,11 @@ nmap <C-a> 0
 " 右側に行を追加して透明にする
 set signcolumn=yes
 highlight clear SignColumn
+
+" ---------------------------
+"       Vim Autosave
+" ---------------------------
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+let g:auto_save_silent = 1
 
