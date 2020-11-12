@@ -29,6 +29,11 @@ function gcod() {
 function currentBranch {
   git branch | grep \* | cut -d ' ' -f2
 }
+# git push first
+function gpuf {
+  currentBranch=$(currentBranch)
+  git push --set-upstream origin $currentBranch
+}
 # git checkout -b feature/issue-
 function gcobf() {
   echo "$(currentBranch) -> feature/issue-$@\ny/n"
