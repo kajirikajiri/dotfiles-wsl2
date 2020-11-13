@@ -110,3 +110,4 @@ let g:auto_save_silent = 1
 set hlsearch
 nnoremap <ESC><ESC> :noh<CR>
 
+set ls=2
