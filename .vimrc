@@ -111,3 +111,9 @@ set hlsearch
 nnoremap <ESC><ESC> :noh<CR>
 
 set ls=2
+
+" 相対パスをyank
+:nnoremap <Leader>p :let @" = expand("%")<cr>
+" フルパスをyank
+:nnoremap <Leader>P :let @" = expand("%:p")<cr>
+
