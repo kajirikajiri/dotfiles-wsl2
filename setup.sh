@@ -81,38 +81,6 @@ else
   echo -e "\n"
 fi
 
-# google-chrome を使えるようにする
-if has "google-chrome"; then
-  echo -e "\n"
-  echo 'google-chrome present!'
-  echo -e "\n"
-else
-  sudo apt update && sudo apt upgrade -y
-  sudo apt install -y xfce4-terminal xfce4-session xfce4
-  sudo apt-get update
-  sudo apt-get install -y x11-apps
-  sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-  sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  sudo apt update
-  sudo apt install -y google-chrome-stable
-  echo -e "\n"
-  echo 'installed google-chrome'
-  echo -e "\n"
-fi
-
-# hub を使えるようにする
-if has "hub"; then
-  echo -e "\n"
-  echo 'hub present!'
-  echo -e "\n"
-else
-  sudo apt update
-  sudo apt install -y hub
-  echo -e "\n"
-  echo 'installed hub'
-  echo -e "\n"
-fi
-
 # yarn を使えるようにする
 if has "yarn"; then
   echo -e "\n"
@@ -133,3 +101,34 @@ else
 fi
 
 
+# google-chrome を使えるようにする
+# if has "google-chrome"; then
+#   echo -e "\n"
+#   echo 'google-chrome present!'
+#   echo -e "\n"
+# else
+#   sudo apt update && sudo apt upgrade -y
+#   sudo apt install -y xfce4-terminal xfce4-session xfce4
+#   sudo apt-get update
+#   sudo apt-get install -y x11-apps
+#   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#   sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+#   sudo apt update
+#   sudo apt install -y google-chrome-stable
+#   echo -e "\n"
+#   echo 'installed google-chrome'
+#   echo -e "\n"
+# fi
+
+# hub を使えるようにする
+# if has "hub"; then
+#   echo -e "\n"
+#   echo 'hub present!'
+#   echo -e "\n"
+# else
+#   sudo apt update
+#   sudo apt install -y hub
+#   echo -e "\n"
+#   echo 'installed hub'
+#   echo -e "\n"
+# fi
