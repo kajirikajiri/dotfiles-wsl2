@@ -119,14 +119,15 @@ if has "ruby"; then
   echo 'ruby present!'
   echo -e "\n"
 else
-	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-	mkdir -p "$(rbenv root)"/plugins
-	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-	sudo apt install -y build-essential
-	sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-	rbenv install 2.7.2
-	rbenv global 2.7.2
-	gem install solargraph -v 0.31.2
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  mkdir -p "$(rbenv root)"/plugins
+  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  . ~/.zshrc
+  sudo apt install -y build-essential
+  sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+  rbenv install 2.7.2
+  rbenv global 2.7.2
+  gem install solargraph -v 0.31.2
   echo -e "\n"
   echo 'installed ruby'
   echo -e "\n"
