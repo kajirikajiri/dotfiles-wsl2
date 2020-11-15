@@ -36,20 +36,6 @@ do
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-# zshがなければinstallする
-if has "zsh"; then
-  echo -e "\n"
-  echo 'zsh is present!'
-  echo -e "\n"
-else
-  sudo apt update
-  sudo apt install -y zsh
-  chsh -s $(which zsh) || true # for skipping in CI
-  echo -e "\n"
-  echo 'installed zsh'
-  echo -e "\n"
-fi
-
 # zsh-autosuggestion
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
@@ -125,7 +111,9 @@ else
   . ~/.bashrc
   mkdir -p "$(rbenv root)"/plugins
   git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  sudo apt update
   sudo apt install -y build-essential
+  sudo apt-get update
   sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
   rbenv install 2.7.2
   rbenv global 2.7.2
@@ -168,3 +156,17 @@ fi
 #    echo -e "\n"
 #  fi
 
+
+# # zshがなければinstallする
+# if has "zsh"; then
+#   echo -e "\n"
+#   echo 'zsh is present!'
+#   echo -e "\n"
+# else
+#   sudo apt update
+#   sudo apt install -y zsh
+#   chsh -s $(which zsh) || true # for skipping in CI
+#   echo -e "\n"
+#   echo 'installed zsh'
+#   echo -e "\n"
+# fi
