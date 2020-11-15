@@ -119,6 +119,7 @@ if has "ruby"; then
   echo 'ruby present!'
   echo -e "\n"
 else
+  # https://qiita.com/tsukamoto/items/6e9a181b6e0defc27a39
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
   mkdir -p "$(rbenv root)"/plugins
   git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
