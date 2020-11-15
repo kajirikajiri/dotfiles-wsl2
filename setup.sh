@@ -39,6 +39,20 @@ done
 # zsh-autosuggestion
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
+# zshがなければinstallする
+if has "zsh"; then
+  echo -e "\n"
+  echo 'zsh is present!'
+  echo -e "\n"
+else
+  sudo apt update
+  sudo apt install -y zsh
+  chsh -s $(which zsh) || true # for skipping in CI
+  echo -e "\n"
+  echo 'installed zsh'
+  echo -e "\n"
+fi
+
 # golangがなければinstallする
 if has "go"; then
   echo -e "\n"
@@ -60,8 +74,8 @@ if has "fzf"; then
   echo 'fzf is present!'
   echo -e "\n"
 else
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
   echo -e "\n"
   echo 'installed fzf'
   echo -e "\n"
@@ -156,18 +170,3 @@ fi
 #    echo 'installed hub'
 #    echo -e "\n"
 #  fi
-
-
-# # zshがなければinstallする
-# if has "zsh"; then
-#   echo -e "\n"
-#   echo 'zsh is present!'
-#   echo -e "\n"
-# else
-#   sudo apt update
-#   sudo apt install -y zsh
-#   chsh -s $(which zsh) || true # for skipping in CI
-#   echo -e "\n"
-#   echo 'installed zsh'
-#   echo -e "\n"
-# fi
