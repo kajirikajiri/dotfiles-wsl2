@@ -31,3 +31,5 @@
 !/.vim/.netrwhist
 !/.vim/autoload/plug.vim
 !/.vimrc
+
+!/.bashrc
