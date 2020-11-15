@@ -37,67 +37,67 @@ do
 done
 
 # zsh-autosuggestion
-# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 # golangがなければinstallする
-# if has "go"; then
-#   echo -e "\n"
-#   echo 'go is present!'
-#   echo -e "\n"
-# else
-#   sudo add-apt-repository ppa:longsleep/golang-backports
-#   sudo apt update
-#   sudo apt install -y golang-go
-#   go get github.com/x-motemen/ghq
-#   echo -e "\n"
-#   echo 'installed go'
-#   echo -e "\n"
-# fi
+if has "go"; then
+  echo -e "\n"
+  echo 'go is present!'
+  echo -e "\n"
+else
+  sudo add-apt-repository ppa:longsleep/golang-backports
+  sudo apt update
+  sudo apt install -y golang-go
+  go get github.com/x-motemen/ghq
+  echo -e "\n"
+  echo 'installed go'
+  echo -e "\n"
+fi
 
-# # fzfがなければinstallする
-# if has "fzf"; then
-#   echo -e "\n"
-#   echo 'fzf is present!'
-#   echo -e "\n"
-# else
-# 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-# 	~/.fzf/install
-#   echo -e "\n"
-#   echo 'installed fzf'
-#   echo -e "\n"
-# fi
+# fzfがなければinstallする
+if has "fzf"; then
+  echo -e "\n"
+  echo 'fzf is present!'
+  echo -e "\n"
+else
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+  echo -e "\n"
+  echo 'installed fzf'
+  echo -e "\n"
+fi
 
-# # agがなければinstallする(fzfのAgコマンドで使ってる)
-# if has "ag"; then
-#   echo -e "\n"
-#   echo 'ag is present!'
-#   echo -e "\n"
-# else
-#   sudo apt-get install silversearcher-ag
-#   echo -e "\n"
-#   echo 'installed ag'
-#   echo -e "\n"
-# fi
+# agがなければinstallする(fzfのAgコマンドで使ってる)
+if has "ag"; then
+  echo -e "\n"
+  echo 'ag is present!'
+  echo -e "\n"
+else
+  sudo apt-get install silversearcher-ag
+  echo -e "\n"
+  echo 'installed ag'
+  echo -e "\n"
+fi
 
 
-# # yarn を使えるようにする
-# if has "yarn"; then
-#   echo -e "\n"
-#   echo 'yarn present!'
-#   echo -e "\n"
-# else
-#   sudo apt install -y nodejs npm
-#   sudo npm install n -g
-#   sudo n stable
-#   sudo apt purge -y nodejs npm
-#   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-#   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-#   sudo apt update && sudo apt install -y yarn
-#   sudo apt purge -fy libuv1 nodejs
-#   echo -e "\n"
-#   echo 'installed yarn'
-#   echo -e "\n"
-# fi
+# yarn を使えるようにする
+if has "yarn"; then
+  echo -e "\n"
+  echo 'yarn present!'
+  echo -e "\n"
+else
+  sudo apt install -y nodejs npm
+  sudo npm install n -g
+  sudo n stable
+  sudo apt purge -y nodejs npm
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt update && sudo apt install -y yarn
+  sudo apt purge -fy libuv1 nodejs
+  echo -e "\n"
+  echo 'installed yarn'
+  echo -e "\n"
+fi
 
 # ruby, rbenv, solargraphをつかえるように
 if has "ruby"; then
@@ -114,7 +114,11 @@ else
   sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
   rbenv install 2.7.2
   rbenv global 2.7.2
+  
+  # https://qiita.com/lp-peg/items/58f49c2f4920f363370b
+  # solargraphのv0.31.2以降では、bundler(=> v1.17.2)を要求していました。
   gem install solargraph -v 0.31.2
+  
   echo -e "\n"
   echo 'installed ruby'
   echo -e "\n"
@@ -122,23 +126,23 @@ fi
 
 
 # google-chrome を使えるようにする
-#  if has "google-chrome"; then
-#    echo -e "\n"
-#    echo 'google-chrome present!'
-#    echo -e "\n"
-#  else
-#    sudo apt update && sudo apt upgrade -y
-#    sudo apt install -y xfce4-terminal xfce4-session xfce4
-#    sudo apt-get update
-#    sudo apt-get install -y x11-apps
-#    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-#    sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#    sudo apt update
-#    sudo apt install -y google-chrome-stable
-#    echo -e "\n"
-#    echo 'installed google-chrome'
-#    echo -e "\n"
-#  fi
+ if has "google-chrome"; then
+   echo -e "\n"
+   echo 'google-chrome present!'
+   echo -e "\n"
+ else
+   sudo apt update && sudo apt upgrade -y
+   sudo apt install -y xfce4-terminal xfce4-session xfce4
+   sudo apt-get update
+   sudo apt-get install -y x11-apps
+   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+   sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+   sudo apt update
+   sudo apt install -y google-chrome-stable
+   echo -e "\n"
+   echo 'installed google-chrome'
+   echo -e "\n"
+ fi
 
 # # hub を使えるようにする
 #  if has "hub"; then
