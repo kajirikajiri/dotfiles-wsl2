@@ -17,6 +17,11 @@ alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcrr="docker-compose run --rm"
 
+# change windows terminal title
+function changetitle() {
+	echo -ne "\033]0;$@\a"
+}
+
 # git checkout feature/issue-
 function gcof() {
   git checkout feature/issue-"$@"
@@ -70,6 +75,7 @@ function ghq-fzf() {
     zle accept-line
   fi
   zle reset-prompt
+	changetitle ${selected_dir##*/}
 }
 zle -N ghq-fzf
 bindkey "^G" ghq-fzf
