@@ -19,8 +19,9 @@ alias dcrr="docker-compose run --rm"
 
 # git commit -m $@
 function gcm() {
-	result="$(IFS=' '; echo $@)"
-	git commit -m "$result" 
+  # そのまま渡すと個別の引数として認識されたのでblankでjoin
+	joined="$(IFS=' '; echo $@)"
+	git commit -m "$joined" 
 }
 
 # change windows terminal title
