@@ -1,7 +1,7 @@
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ga='git add'
 alias ga.='git add .'
-alias gcm='git commit -m'
 alias gs='git status'
 alias gd='git diff'
 alias gp='git pull'
@@ -17,6 +17,11 @@ alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcrr="docker-compose run --rm"
 
+# git commit -m $@
+function gcm() {
+	git commit -m '"$@"'
+}
+
 # change windows terminal title
 function changetitle() {
 	echo -ne "\033]0;$@\a"
@@ -26,9 +31,13 @@ function changetitle() {
 function gcof() {
   git checkout feature/issue-"$@"
 }
-# git checkout issue-
+# git checkout develop
 function gcod() {
   git checkout develop && git pull
+}
+# git checkout master
+function gcom() {
+  git checkout master && git pull
 }
 # git current branch
 function currentBranch {
