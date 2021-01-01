@@ -19,7 +19,7 @@ alias dcrr="docker-compose run --rm"
 
 # git commit -m $@
 function gcm() {
-	git commit -m '"$@"'
+	git commit -m "'$@'"
 }
 
 # change windows terminal title
