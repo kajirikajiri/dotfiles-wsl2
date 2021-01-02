@@ -19,6 +19,9 @@
 !/.zsh.d/0002-alias.zsh
 !/.zsh.d/0003-style.zsh
 !/.zsh.d/0004-package.zsh
+!/.zsh.d/0005-zsh-settings.zsh
+!/.zsh.d/0006-editor-settings.zsh
+!/.zsh.d/0007-language-settings.zsh
 
 !/.zsh
 !/.zsh/zsh-autosuggestions
