@@ -36,3 +36,7 @@
 !/.vimrc
 
 !/.bashrc
+
+# tig
+!/.tigrc
+!/.czrc
