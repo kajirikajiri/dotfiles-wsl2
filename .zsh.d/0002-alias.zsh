@@ -91,14 +91,14 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey "^G" ghq-fzf
 
-# hub browse current dir fzf
-function hub-browse() {
-  BUFFER="hub browse"
+# gh-repo-view current dir fzf
+function gh-repo-view() {
+  BUFFER="gh repo view --web"
   zle accept-line
   zle reset-prompt
 }
-zle -N hub-browse
-bindkey "^O" hub-browse
+zle -N gh-repo-view
+bindkey "^O" gh-repo-view
 
 zdf() {
 	local file
