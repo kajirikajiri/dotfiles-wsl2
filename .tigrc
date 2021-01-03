@@ -1,2 +1,2 @@
-bind status  C  !git cz
+bind status  C  !sh -c 'res=$(git diff --staged --name-only) && echo "${GREEN}${res}${NC}" && git cz'
 
