@@ -22,6 +22,7 @@
 !/.zsh.d/0005-zsh-settings.zsh
 !/.zsh.d/0006-editor-settings.zsh
 !/.zsh.d/0007-language-settings.zsh
+!/.zsh.d/0008-colors.zsh
 
 !/.zsh
 !/.zsh/zsh-autosuggestions
