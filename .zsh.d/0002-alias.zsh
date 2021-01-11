@@ -8,6 +8,7 @@ alias gp='git pull'
 alias gpu='git push'
 alias gco='git checkout'
 alias gco.='git checkout .'
+alias gcb='git checkout -b'
 alias ci='code-insiders'
 alias ci.='code-insiders .'
 alias l='ls -la'
@@ -16,12 +17,19 @@ alias d="docker"
 alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcrr="docker-compose run --rm"
+alias dck="docker-compose kill"
 
 # git commit -m $@
 function gcm() {
   # そのまま渡すと個別の引数として認識されたのでblankでjoin
 	joined="$(IFS=' '; echo $@)"
 	git commit -m "$joined" 
+}
+
+# git commit -m $@ --no-verify
+function gcmn() {
+	joined="$(IFS=' '; echo $@)"
+	git commit -m "$joined" --no-verify
 }
 
 # change windows terminal title
@@ -110,4 +118,15 @@ zdf() {
 		--header='(view:ctrl-v) (sort:ctrl-x)' \
 	)"
 	vi "$file" || return
+}
+
+# obsidian backup
+function obsidian() {
+	local current_dir
+	current_dir="$(pwd)"
+	cd /mnt/c/Obsidian
+	git add .
+	git commit -m "$(date +%Y%m%d%H%M%S)"
+	git push
+	cd $current_dir
 }
