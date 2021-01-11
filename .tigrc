@@ -1,2 +1,7 @@
+# commit時にstagedファイルを表示(commitizenに貼り付けて使う)
 bind status  C  !sh -c 'res=$(git diff --staged --name-only) && echo "${GREEN}${res}${NC}" && git cz'
+
+# soft reset
+bind generic ^  ?git reset --soft HEAD^
+
 
