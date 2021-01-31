@@ -6,9 +6,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gp='git pull'
 alias gpu='git push'
-alias gco='git checkout'
 alias gco.='git checkout .'
-alias gcb='git checkout -b'
 alias ci='code-insiders'
 alias ci.='code-insiders .'
 alias l='ls -la'
@@ -18,6 +16,13 @@ alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcrr="docker-compose run --rm"
 alias dck="docker-compose kill"
+
+function gco() {
+	git checkout $@ && changetitle "${PWD##*/}[$(currentBranch)]"
+}
+function gcb() {
+  git checkout -b "$@" && changetitle "${PWD##*/}[$(currentBranch)]"
+}
 
 # git commit -m $@
 function gcm() {
@@ -37,17 +42,17 @@ function changetitle() {
 	echo -ne "\033]0;$@\a"
 }
 
-# git checkout feature/issue-
+# gco feature/issue-
 function gcof() {
-  git checkout feature/issue-"$@"
+  gco feature/issue-"$@"
 }
-# git checkout develop
+# gco develop
 function gcod() {
-  git checkout develop && git pull
+  gco develop && git pull
 }
-# git checkout master
+# gco master
 function gcom() {
-  git checkout master && git pull
+  gco master && git pull
 }
 # git current branch
 function currentBranch {
@@ -55,15 +60,22 @@ function currentBranch {
 }
 # git push first
 function gpuf {
-  currentBranch=$(currentBranch)
-  git push --set-upstream origin $currentBranch
+  git push --set-upstream origin "$(currentBranch)"
+}
+# git checkout -b $@
+function gcob() {
+  echo "$(currentBranch) -> $@\ny/n"
+  if read -q; then
+    echo "\n"
+    gcb "$@"
+  fi
 }
 # git checkout -b feature/issue-
 function gcobf() {
   echo "$(currentBranch) -> feature/issue-$@\ny/n"
   if read -q; then
     echo "\n"
-    git checkout -b feature/issue-"$@";
+    gcb feature/issue-"$@"
   fi
 }
 
@@ -90,11 +102,13 @@ bindkey '^R' history-fzf
 function ghq-fzf() {
   local selected_dir=$(ghq list | fzf --query="$LBUFFER")
   if [ -n "$selected_dir" ]; then
-    BUFFER="cd $(ghq root)/${selected_dir}"
+    # BUFFER="cd $(ghq root)/${selected_dir}"
+    cd "$(ghq root)/${selected_dir}"
+		changetitle "${PWD##*/}[$(currentBranch)]"
     zle accept-line
   fi
   zle reset-prompt
-	changetitle ${selected_dir##*/}
+	# changetitle "${selected_dir##*/}[$(currentBranch)]"
 }
 zle -N ghq-fzf
 bindkey "^G" ghq-fzf
