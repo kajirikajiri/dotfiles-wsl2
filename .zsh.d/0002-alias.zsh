@@ -37,6 +37,12 @@ function gcmn() {
 	git commit -m "$joined" --no-verify
 }
 
+# git commit -m $@ --allow-empty
+function gcme() {
+	joined="$(IFS=' '; echo $@)"
+	git commit -m "$joined" --allow-empty
+}
+
 # change windows terminal title
 function changetitle() {
 	echo -ne "\033]0;$@\a"
